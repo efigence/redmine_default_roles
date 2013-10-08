@@ -4,7 +4,7 @@ module ApplicationHelper
   end
 
   def default_roles role_id
-    if Setting.plugin_default_roles.blank?
+    if Setting.plugin_default_roles.blank? || Setting.plugin_default_roles['default_roles'].blank?
       []
     else
       Setting.plugin_default_roles['default_roles'][role_id.to_s].to_a
