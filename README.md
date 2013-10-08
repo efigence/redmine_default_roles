@@ -9,8 +9,10 @@ Developed against Redmine 2.3.3, but will probably work on any version. Needs re
 # Installation
 
 1. Go to your Redmine installation's plugins/ directory
-2. `git clone http://github.com/efigence/redmine_default_roles_plugin`
+2. `git clone http://github.com/efigence/redmine_default_roles_plugin default_roles`
 3. Restart Redmine
+
+_Note: in the second step we are creating a different directory, because the Redmine plugin system requires the directory and plugin name to match._
 
 # Usage
 
