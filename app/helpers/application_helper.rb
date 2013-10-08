@@ -1,6 +1,6 @@
 module ApplicationHelper
-  def has_default_role user, role
-    default_roles(role.id).include? user.id.to_s
+  def has_default_role obj, role
+    default_roles(role.id).include? obj.id.to_s
   end
 
   def default_roles role_id

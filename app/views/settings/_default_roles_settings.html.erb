@@ -1,6 +1,12 @@
 <%= javascript_include_tag '/plugin_assets/default_roles/javascripts/selectize' %>
 <%= stylesheet_link_tag '/plugin_assets/default_roles/stylesheets/selectize.default.css' %>
-<table>
+<table style="width: 100%">
+  <thead>
+    <tr>
+      <th><%= l '.role' %></th>
+      <th><%= l '.users_groups' %></th>
+    </tr>
+  </thead>
   <tbody>
     <% Role.all.each do |role| %>
       <tr>
@@ -9,7 +15,7 @@
         </td>
         <td style="width: 80%">
           <select name="<%= "settings[default_roles[#{role.id}]][]" %>" class="selectize" multiple>
-            <%= options_from_collection_for_select User.all, :id, :name, Proc.new { |user| has_default_role(user, role) } %>
+            <%= options_from_collection_for_select Principal.all, :id, :name, Proc.new { |user| has_default_role(user, role) } %>
           </select>
         </td>
       </tr>

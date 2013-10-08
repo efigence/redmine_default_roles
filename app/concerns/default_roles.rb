@@ -4,8 +4,8 @@ module DefaultRoles
   def assign_default_users
     default_roles = Setting.plugin_default_roles['default_roles']
     default_roles = {} unless default_roles.present?
-    default_roles.each do |role_id, user_ids|
-      user_ids.each do |uid|
+    default_roles.each do |role_id, principal_ids|
+      principal_ids.each do |uid|
         self.members.build(:user_id => uid).tap do |member|
           member.role_ids = [role_id]
           member.save!
