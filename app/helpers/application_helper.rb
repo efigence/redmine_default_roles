@@ -10,4 +10,8 @@ module ApplicationHelper
       Setting.plugin_default_roles['default_roles'][role_id.to_s].to_a
     end
   end
+
+  def applicable_roles
+    Role.where('name not in (?)', ['Non member','Anonymous'])
+  end
 end
