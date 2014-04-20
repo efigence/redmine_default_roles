@@ -1,26 +1,23 @@
 module DefaultRoles
   extend ActiveSupport::Concern
 
-  def assign_default_users
-    default_roles = Setting.plugin_default_roles['default_roles']
-    default_roles = {} unless default_roles.present?
+  def assign_default_roles
+    default_roles = Setting.plugin_default_roles['default_roles'] || {}
     default_roles.each do |role_id, principal_ids|
-      new_member_role = Role.find(role_id)
-      principal_ids.each do |uid|
-        if current_member = Member.where(project_id: self.id, user_id: uid).first
-          current_member.roles << new_member_role
-        else
-          self.members.build(:user_id => uid).tap do |member|
-            member.roles << new_member_role
-            member.save!
+      if principal_ids.include?(self.user_id.to_s)
+        principal_ids.each do |uid|
+          if uid.to_i == self.user_id
+            unless self.roles.where(id: role_id).exists?
+              self.roles << Role.find(role_id)
+            end
           end
         end
       end
     end
-    save!
   end
 
   included do
-    after_create :assign_default_users
+    before_validation :assign_default_roles
   end
 end
+

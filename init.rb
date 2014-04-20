@@ -11,4 +11,6 @@ end
 
 require_relative 'app/helpers/application_helper.rb'
 require_relative 'app/concerns/default_roles.rb'
-Project.send :include, DefaultRoles
+require_relative 'app/concerns/default_members.rb'
+Member.send :include, DefaultRoles
+Project.send :include, DefaultMembers
