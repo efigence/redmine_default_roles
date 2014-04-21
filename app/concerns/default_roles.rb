@@ -5,12 +5,8 @@ module DefaultRoles
     default_roles = Setting.plugin_default_roles['default_roles'] || {}
     default_roles.each do |role_id, principal_ids|
       if principal_ids.include?(self.user_id.to_s)
-        principal_ids.each do |uid|
-          if uid.to_i == self.user_id
-            unless self.roles.where(id: role_id).exists?
-              self.roles << Role.find(role_id)
-            end
-          end
+        unless self.roles.where(id: role_id).exists?
+          self.roles << Role.find(role_id)
         end
       end
     end
