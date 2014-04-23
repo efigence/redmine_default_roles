@@ -1,6 +1,6 @@
 Redmine::Plugin.register :default_roles do
   name 'Default Roles plugin'
-  author 'Krzysztof Zych, Jacek Grzybowski, Rafał Lisowski'
+  author 'Krzysztof Zych, Jacek Grzybowski, Rafal Lisowski'
   description 'Allow adding certain people or groups to each new project'
   version '0.0.5'
   url 'http://github.com/efigence/redmine_default_roles'
