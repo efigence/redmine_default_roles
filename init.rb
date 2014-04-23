@@ -2,7 +2,7 @@ Redmine::Plugin.register :default_roles do
   name 'Default Roles plugin'
   author 'Krzysztof Zych, Jacek Grzybowski, Rafał Lisowski'
   description 'Allow adding certain people or groups to each new project'
-  version '0.0.4'
+  version '0.0.5'
   url 'http://github.com/efigence/redmine_default_roles'
   author_url 'http://efigence.com'
 
@@ -10,7 +10,5 @@ Redmine::Plugin.register :default_roles do
 end
 
 require_relative 'app/helpers/application_helper.rb'
-require_relative 'app/concerns/default_roles.rb'
 require_relative 'app/concerns/default_members.rb'
-Member.send :include, DefaultRoles
 Project.send :include, DefaultMembers
